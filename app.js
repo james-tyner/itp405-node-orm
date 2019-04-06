@@ -51,7 +51,7 @@ Track.hasOne(Genre, {
   foreignKey:"GenreId"
 });
 
-app.patch("/tracks/:id", function(request, response){
+app.patch("/api/tracks/:id", function(request, response){
   Track.findByPk(request.params.id, {
     include: [Genre, Media_Type, Album]
   }).then(function(track){
@@ -70,7 +70,7 @@ app.patch("/tracks/:id", function(request, response){
         });
       });
     } else {
-      response.json(404);
+      response.status(404).send();
     }
   });
 });
